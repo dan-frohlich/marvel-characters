@@ -1,0 +1,27 @@
+{
+    "name": "Sabertooth",
+    "attributes" : {
+        "fighting": 40,
+        "agility": 31,
+        "strength": 12,
+        "endurance": 33,
+        "reason": 6,
+        "intuition": 10,
+        "psyche": 36
+    },
+    "initial_resources": 6,
+    "powers": [
+        {"name": "Claw and Bite", "power_name": "Body Alterations - Offensive", "rank": 30},
+        {"power_name": "Enhanced Senses", "rank": 50},
+        {"power_name": "Infravision", "rank": 30}
+    ],    
+    "log": [
+        {"msg": "test data"}
+    ],
+    "resources_log": [
+        {"notes": "initial resources - typical", "value": 6}
+    ],
+    "popularity_log": [
+        {"notes": "initial popularity - mutant", "value": 0}
+    ]
+}
