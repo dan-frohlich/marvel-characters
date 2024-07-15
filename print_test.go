@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"strings"
 	"testing"
+
+	yaml "gopkg.in/yaml.v2"
 )
 
 func TestAsciisheet(t *testing.T) {
@@ -36,6 +38,20 @@ func TestLoadSabertooth(t *testing.T) {
 
 	t.Logf("json: %s", sabertoothJSON)
 	t.Logf("unmarshaled: %#v", c)
+
+	var b []byte
+	b, err = yaml.Marshal(c)
+	if err != nil {
+		t.Errorf("Error marhsaling sabertooth yaml: %s", err)
+	}
+	t.Log(string(b), '\n')
+
+	dc := c.ToDisplayCharacter()
+	b, err = yaml.Marshal(dc)
+	if err != nil {
+		t.Errorf("Error marhsaling display yaml: %s", err)
+	}
+	t.Log(string(b), '\n')
 
 	variable := "Name"
 	actual := string(c.Name)
@@ -134,6 +150,9 @@ func checkVerminAttributes(c Character, t *testing.T) {
 
 //go:embed test_data/sabertooth.json
 var sabertoothJSON []byte
+
+//go:embed test_data/sabertooth.yaml
+var sabertoothYAML []byte
 
 //// go:embed test_data/sabertooth.png
 // var sabertoothImage []byte

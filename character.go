@@ -1,34 +1,34 @@
 package characters
 
 type CreationLog struct {
-	Message string            `json:"msg,omitempty"`
-	Fields  map[string]string `json:"fields,omitempty"`
+	Message string            `json:"msg,omitempty" yaml:"msg,omitempty"`
+	Fields  map[string]string `json:"fields,omitempty" yaml:"fields,omitempty"`
 }
 
 type ValueLog struct {
-	Notes string `json:"notes,omitempty"`
-	Value int    `json:"value,omitempty"`
+	Notes string `json:"notes,omitempty" yaml:"notes,omitempty"`
+	Value int    `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 type Character struct {
-	Name             string        `json:"name,omitempty"`
-	Attributes       Attributes    `json:"attributes,omitempty"`
-	InitialResources Rank          `json:"initial_resources,omitempty"`
-	Powers           []Power       `json:"powers,omitempty"`
-	Log              []CreationLog `json:"log,omitempty"`
-	KarmaLog         []ValueLog    `json:"karma_log,omitempty"`
-	PopularityLog    []ValueLog    `json:"popularity_log,omitempty"`
-	ResourcesLog     []ValueLog    `json:"resources_log,omitempty"`
+	Name             string        `json:"name,omitempty" yaml:"name,omitempty"`
+	Attributes       Attributes    `json:"attributes,omitempty" yaml:"attributes,omitempty"`
+	InitialResources Rank          `json:"initial_resources,omitempty" yaml:"initial_resources,omitempty"`
+	Powers           []Power       `json:"powers,omitempty" yaml:"powers,omitempty"`
+	Log              []CreationLog `json:"log,omitempty" yaml:"log,omitempty"`
+	KarmaLog         []ValueLog    `json:"karma_log,omitempty" yaml:"karma_log,omitempty"`
+	PopularityLog    []ValueLog    `json:"popularity_log,omitempty" yaml:"popularity_log,omitempty"`
+	ResourcesLog     []ValueLog    `json:"resources_log,omitempty" yaml:"resources_log,omitempty"`
 }
 
 type Attributes struct {
-	Fighting  Rank `json:"fighting,omitempty"`
-	Agility   Rank `json:"agility,omitempty"`
-	Strength  Rank `json:"strength,omitempty"`
-	Endurance Rank `json:"endurance,omitempty"`
-	Reason    Rank `json:"reason,omitempty"`
-	Intuition Rank `json:"intuition,omitempty"`
-	Psyche    Rank `json:"psyche,omitempty"`
+	Fighting  Rank `json:"fighting,omitempty" yaml:"fighting,omitempty"`
+	Agility   Rank `json:"agility,omitempty" yaml:"agility,omitempty"`
+	Strength  Rank `json:"strength,omitempty" yaml:"strength,omitempty"`
+	Endurance Rank `json:"endurance,omitempty" yaml:"endurance,omitempty"`
+	Reason    Rank `json:"reason,omitempty" yaml:"reason,omitempty"`
+	Intuition Rank `json:"intuition,omitempty" yaml:"intuition,omitempty"`
+	Psyche    Rank `json:"psyche,omitempty" yaml:"psyche,omitempty"`
 }
 
 func (c Character) Health() int {
