@@ -11,7 +11,11 @@ import (
 )
 
 var (
-	fileFlag = flag.String("f", "character.json", "path to character json file")
+	fileFlag      = flag.String("f", "character.json", "REQUIRED path to character json file")
+	karmaLogFlag  = flag.Bool("k", false, "print karma log")
+	charLogFlag   = flag.Bool("c", false, "print creation log")
+	popLogFlag    = flag.Bool("p", false, "print popularity log")
+	outFormatFlag = flag.String("o", "text", "output format: [text|pdf]")
 )
 
 func main() {
@@ -31,7 +35,16 @@ func main() {
 			os.Exit(1)
 		}
 
-		fmt.Println(string(characters.AsciiCharacterSheet(c)))
+		switch *outFormatFlag {
+		case "text":
+			fmt.Println(string(characters.AsciiCharacterSheet(c, *karmaLogFlag, *charLogFlag, *popLogFlag)))
+		case "pdf":
+			fallthrough
+		default:
+			fmt.Printf("output format [%s] not implemented.\n", *outFormatFlag)
+			flag.Usage()
+			os.Exit(1)
+		}
 		return
 	}
 	flag.Usage()

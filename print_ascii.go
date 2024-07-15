@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func AsciiCharacterSheet(c Character) (out []byte) {
+func AsciiCharacterSheet(c Character, printKarmaLog, printCharacterLog, printPopularityLog bool) (out []byte) {
 
 	out = append(out, []byte(fmt.Sprintf("Name: %s\n", c.Name))...)
 	out = append(out, []byte("Attributes...\n")...)
@@ -95,11 +95,30 @@ func AsciiCharacterSheet(c Character) (out []byte) {
 		}
 	}
 
+	if printKarmaLog {
+		out = append(out, '\n')
+		out = append(out, []byte("Karma Awards...\n")...)
+		out = append(out, []byte("--------------------------------------------------------------------------------\n")...)
+		out = append(out, valueLog(c.KarmaLog)...)
+	}
+	if printPopularityLog {
+		out = append(out, '\n')
+		out = append(out, []byte("Popularity Awards...\n")...)
+		out = append(out, []byte("--------------------------------------------------------------------------------\n")...)
+		out = append(out, valueLog(c.PopularityLog)...)
+	}
+	if printCharacterLog {
+		out = append(out, '\n')
+		out = append(out, []byte("Creation Log...\n")...)
+		out = append(out, []byte("--------------------------------------------------------------------------------\n")...)
+		out = append(out, creationLog(c.Log)...)
+	}
+
 	return out
 }
 
 func attLine(att Rank, name string, padding int) []byte {
-	attFmt := " %-*s %3s(%3d) [ %2d / %2d / %2d ]"
+	attFmt := " %-*s %2s(%2d) [ %2d / %2d / %2d ]"
 	green := att.Entry().Green
 	yellow := att.Entry().Yellow
 	red := att.Entry().Red
@@ -110,4 +129,23 @@ func attLine(att Rank, name string, padding int) []byte {
 func powLine(p PowerEntry) []byte {
 	attFmt := " - %s (%s) %s\n"
 	return []byte(fmt.Sprintf(attFmt, p.Name, p.Reference, p.Description))
+}
+
+func valueLog(vl []ValueLog) (out []byte) {
+	for _, l := range vl {
+		out = append(out, fmt.Sprintf(" - [%3d] %s", l.Value, l.Notes)...)
+		out = append(out, '\n')
+	}
+	return
+}
+
+func creationLog(vl []CreationLog) (out []byte) {
+	for _, l := range vl {
+		out = append(out, fmt.Sprintf(" - %s ", l.Message)...)
+		for k, v := range l.Fields {
+			out = append(out, fmt.Sprintf(" %s=%s", k, v)...)
+		}
+		out = append(out, '\n')
+	}
+	return
 }

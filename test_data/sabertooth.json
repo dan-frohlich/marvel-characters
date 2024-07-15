@@ -16,12 +16,13 @@
         {"power_name": "Infravision", "rank": 30}
     ],    
     "log": [
-        {"msg": "test data"}
+        {"msg": "test data hand crafted json"}
     ],
     "resources_log": [
         {"notes": "initial resources - typical", "value": 6}
     ],
     "popularity_log": [
-        {"notes": "initial popularity - mutant", "value": 0}
+        {"notes": "initial popularity", "value": 10},
+        {"notes": "mutant", "value": -10}
     ]
 }

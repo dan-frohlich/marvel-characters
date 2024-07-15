@@ -14,7 +14,7 @@ func TestAsciisheet(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error reading sabertooth: %s", err)
 	}
-	data := AsciiCharacterSheet(c)
+	data := AsciiCharacterSheet(c, false, false, false)
 	datas := string(data)
 
 	t.Logf("made sheet:\n%s", datas)
