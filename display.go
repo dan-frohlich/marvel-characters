@@ -10,9 +10,12 @@ type DisplayCharacter map[string]string
 func (c Character) ToDisplayCharacter() DisplayCharacter {
 	dc := make(DisplayCharacter)
 	dc["name"] = c.Name
+	dc["health"] = strconv.Itoa(c.Health())
 	dc["resources"] = strconv.Itoa(c.Resources())
 	dc["karma"] = strconv.Itoa(c.Karma())
 	dc["popularity"] = strconv.Itoa(c.Popularity())
+	dc["move"] = fmt.Sprintf("%4d areas", c.Move())
+	dc["initiative"] = strconv.Itoa(c.InitiativeMod())
 
 	c.addAttributesToDisplay(dc)
 	c.addPowersToDisplay(dc)

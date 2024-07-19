@@ -9,6 +9,24 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
+func TestPDFA6CharacterSheet(t *testing.T) {
+
+	var c = Character{}
+
+	err := json.Unmarshal(sabertoothJSON, &c)
+	if err != nil {
+		t.Errorf("Error reading sabertooth: %s", err)
+	}
+	b, _ := yaml.Marshal(c.ToDisplayCharacter())
+	t.Logf("char\n%s", b)
+
+	pdf := PDFA6CharacterSheet(c, false, false, false, false)
+	err = pdf.OutputFileAndClose("sabertooth.pdf")
+	if err != nil {
+		t.Errorf("Error writing sabertooth.pdf: %s", err)
+	}
+}
+
 func TestAsciisheet(t *testing.T) {
 	var c = Character{}
 
