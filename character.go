@@ -1,5 +1,7 @@
 package characters
 
+import "log"
+
 type CreationLog struct {
 	Message string            `json:"msg,omitempty" yaml:"msg,omitempty"`
 	Fields  map[string]string `json:"fields,omitempty" yaml:"fields,omitempty"`
@@ -19,6 +21,7 @@ type Character struct {
 	KarmaLog         []ValueLog    `json:"karma_log,omitempty" yaml:"karma_log,omitempty"`
 	PopularityLog    []ValueLog    `json:"popularity_log,omitempty" yaml:"popularity_log,omitempty"`
 	ResourcesLog     []ValueLog    `json:"resources_log,omitempty" yaml:"resources_log,omitempty"`
+	Image            string        `json:"portrait,omitempty" yaml:"portrait,omitempty"`
 }
 
 type Attributes struct {
@@ -80,6 +83,16 @@ func (c Character) Move() int {
 
 func (c Character) InitiativeMod() int {
 	val := c.Attributes.Intuition.Value()
+
+	for _, p := range c.Powers {
+		if pe, ok := PowerEntries[p.EntryName]; ok {
+			if pe.IsInitiative && p.Rank.Value() > val {
+				log.Printf("%s uses %s rank of %d for Initiative", c.Name, pe.Name, p.Rank.Value())
+				val = p.Rank.Value()
+			}
+		}
+	}
+
 	switch {
 	case val <= 10:
 		return 0

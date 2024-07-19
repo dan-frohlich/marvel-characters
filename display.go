@@ -2,6 +2,7 @@ package characters
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 )
 
@@ -16,6 +17,10 @@ func (c Character) ToDisplayCharacter() DisplayCharacter {
 	dc["popularity"] = strconv.Itoa(c.Popularity())
 	dc["move"] = fmt.Sprintf("%4d areas", c.Move())
 	dc["initiative"] = strconv.Itoa(c.InitiativeMod())
+	dc["image"] = c.Image
+	if c.Image == "" {
+		log.Fatal("no character image found")
+	}
 
 	c.addAttributesToDisplay(dc)
 	c.addPowersToDisplay(dc)

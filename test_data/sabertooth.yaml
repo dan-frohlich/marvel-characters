@@ -1,30 +1,32 @@
 name: Sabertooth
-  attributes:
-    fighting: 40
-    agility: 31
-    strength: 12
-    endurance: 33
-    reason: 6
-    intuition: 10
-    psyche: 36
-  initial_resources: 6
-  powers:
-  - name: Claw and Bite
-    entryname: Body Alterations - Offensive
-    rank: 30
-  - name: ""
-    entryname: Enhanced Senses
-    rank: 50
-  - name: ""
-    entryname: Infravision
-    rank: 30
-  log:
-  - msg: test data hand crafted json
-  popularity_log:
-  - notes: initial popularity
-    value: 10
-  - notes: mutant
-    value: -10
-  resources_log:
-  - notes: initial resources - typical
-    value: 6
+attributes:
+  fighting: 40
+  agility: 31
+  strength: 12
+  endurance: 33
+  reason: 6
+  intuition: 10
+  psyche: 36
+initial_resources: 6
+powers:
+- name: Claw and Bite
+  entryname: Body Alterations - Offensive
+  rank: 30
+- name: ""
+  entryname: Enhanced Senses
+  rank: 50
+- name: ""
+  entryname: Infravision
+  rank: 30
+log:
+- msg: test data hand crafted json
+popularity_log:
+- notes: initial popularity
+  value: 10
+- notes: mutant
+  value: -10
+resources_log:
+- notes: initial resources - typical
+  value: 6
+xportrait: ./test_data/sabertooth.png
+portrait: ./test_data/sabretooth-x-men-97.png

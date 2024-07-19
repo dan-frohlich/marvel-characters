@@ -13,12 +13,12 @@ func TestPDFA6CharacterSheet(t *testing.T) {
 
 	var c = Character{}
 
-	err := json.Unmarshal(sabertoothJSON, &c)
+	err := yaml.Unmarshal(sabertoothYAML, &c)
 	if err != nil {
 		t.Errorf("Error reading sabertooth: %s", err)
 	}
-	b, _ := yaml.Marshal(c.ToDisplayCharacter())
-	t.Logf("char\n%s", b)
+	// b, _ := yaml.Marshal(c.ToDisplayCharacter())
+	// t.Logf("char\n%s", b)
 
 	pdf := PDFA6CharacterSheet(c, false, false, false, false)
 	err = pdf.OutputFileAndClose("sabertooth.pdf")
@@ -30,7 +30,7 @@ func TestPDFA6CharacterSheet(t *testing.T) {
 func TestAsciisheet(t *testing.T) {
 	var c = Character{}
 
-	err := json.Unmarshal(sabertoothJSON, &c)
+	err := yaml.Unmarshal(sabertoothYAML, &c)
 	if err != nil {
 		t.Errorf("Error reading sabertooth: %s", err)
 	}
@@ -49,12 +49,12 @@ func TestAsciisheet(t *testing.T) {
 func TestLoadSabertooth(t *testing.T) {
 	var c = Character{}
 
-	err := json.Unmarshal(sabertoothJSON, &c)
+	err := yaml.Unmarshal(sabertoothYAML, &c)
 	if err != nil {
 		t.Errorf("Error reading sabertooth: %s", err)
 	}
 
-	t.Logf("json: %s", sabertoothJSON)
+	t.Logf("yaml: %s", sabertoothYAML)
 	t.Logf("unmarshaled: %#v", c)
 
 	var b []byte
@@ -166,11 +166,5 @@ func checkVerminAttributes(c Character, t *testing.T) {
 	}
 }
 
-//go:embed test_data/sabertooth.json
-var sabertoothJSON []byte
-
 //go:embed test_data/sabertooth.yaml
 var sabertoothYAML []byte
-
-//// go:embed test_data/sabertooth.png
-// var sabertoothImage []byte
