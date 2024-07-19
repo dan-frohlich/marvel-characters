@@ -1,0 +1,31 @@
+name: Cyclops (Scott Summers)
+attributes:
+  fighting: 20
+  agility: 20
+  strength: 6
+  endurance: 30
+  reason: 20
+  intuition: 30
+  psyche: 30
+initial_resources: 6
+powers:
+- name: Optic Blasts
+  entryname: Optic Blasts - cyclops
+  rank: 20
+- name: Visored Blasts
+  entryname: Visored Blasts - cyclops
+  rank: 50
+- name: Invulnerability to Optic Blasts
+  entryname: Invulnerability
+  rank: 1000
+log:
+- msg: test data hand crafted json
+popularity_log:
+- notes: initial popularity
+  value: 10
+- notes: mutant
+  value: -10
+resources_log:
+- notes: initial resources - Good
+  value: 10
+portrait: ./test_data/tsp_cyclops_concept_avidal_v003.jpg

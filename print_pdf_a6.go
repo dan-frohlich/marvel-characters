@@ -85,7 +85,7 @@ func a6LayoutAddPowers(ch Character) (out layout) {
 
 	baseY += incY + 3
 	fontSize -= 2
-	w += 16
+	w += 40
 	// powers.0.entry.desc: adds combat powers
 	// powers.0.entry.name: Body Alterations - Offensive
 	// powers.0.entry.ref: APB-86
@@ -101,7 +101,7 @@ func a6LayoutAddPowers(ch Character) (out layout) {
 	y := baseY
 	for i := range ch.Powers {
 		if i > 0 {
-			y += 6
+			y += 9
 		}
 		c = &cell{
 			x: baseX, y: y, w: w, h: h,
@@ -145,26 +145,27 @@ func a6LayoutAddPowers(ch Character) (out layout) {
 		}
 		page[layoutKey(baseKey+"rank.red")] = c
 
-		c = &cell{
-			x: baseX + w + 5*(cellWidth+1), y: y, w: w, h: h,
-			align: "LM", border: "", fontFamily: a6LayoutFont,
-			fontSize: fontSize, fontWeight: "I", fillColor: col,
-		}
-		page[layoutKey(baseKey+"entry.ref")] = c
+		// c = &cell{
+		// 	x: baseX + w + 5*(cellWidth+1), y: y, w: w, h: h,
+		// 	align: "LM", border: "", fontFamily: a6LayoutFont,
+		// 	fontSize: fontSize, fontWeight: "I", fillColor: col,
+		// }
+		// page[layoutKey(baseKey+"entry.ref")] = c
 
-		c = &cell{
-			x: baseX + w + 5*(cellWidth+1), y: y, w: w, h: h,
-			align: "LM", border: "", fontFamily: a6LayoutFont,
-			fontSize: fontSize, fontWeight: "I", fillColor: col,
-		}
-		page[layoutKey(baseKey+"entry.ref")] = c
 		y += incY - 3
 		c = &cell{
-			x: 1, y: y, w: 103, h: 5,
+			x: 1, y: y, w: 87, h: 5,
 			align: "RM", border: "BL", fontFamily: a6LayoutFont,
 			fontSize: fontSize, fontWeight: "I", fillColor: col,
 		}
 		page[layoutKey(baseKey+"entry.desc")] = c
+
+		c = &cell{
+			x: 88, y: y, w: w, h: 5,
+			align: "LM", border: "LB", fontFamily: a6LayoutFont,
+			fontSize: fontSize, fontWeight: "I", fillColor: col,
+		}
+		page[layoutKey(baseKey+"entry.ref")] = c
 		// if i == 1 {
 		// 	page = layoutPage{}
 		// 	out = append(out, page)

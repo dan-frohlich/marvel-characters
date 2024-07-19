@@ -1,9 +1,12 @@
 package characters
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"strconv"
+
+	"gopkg.in/yaml.v2"
 )
 
 type DisplayCharacter map[string]string
@@ -29,18 +32,50 @@ func (c Character) ToDisplayCharacter() DisplayCharacter {
 
 func (c Character) addPowersToDisplay(dc DisplayCharacter) {
 	for i, p := range c.Powers {
+
+		b, _ := json.Marshal(p)
+		log.Printf("Displaying power %s", b)
+
 		name := string(p.EntryName)
 		if p.Name != "" {
 			name = p.Name
 		}
 		baseKey := fmt.Sprintf("powers.%d", i)
 		dc[baseKey+".name"] = name
-		dc[baseKey+".rank.value"] = strconv.Itoa(p.Rank.Value())
+		v := strconv.Itoa(p.Rank.Value())
+		abv := string(p.Rank.Abbreviation())
+		switch v {
+		case "1000":
+			abv = "Cl"
+			v = "1k"
+		case "2000":
+			abv = "Cl"
+			v = "2k"
+		case "3000":
+			abv = "Cl"
+			v = "3k"
+		}
 		dc[baseKey+".rank.name"] = string(p.Rank.Name())
-		dc[baseKey+".rank.abvr"] = string(p.Rank.Abbreviation())
+		dc[baseKey+".rank.value"] = v
+		dc[baseKey+".rank.abvr"] = abv
 		dc[baseKey+".rank.green"] = strconv.Itoa(p.Rank.Entry().Green)
 		dc[baseKey+".rank.yellow"] = strconv.Itoa(p.Rank.Entry().Yellow)
 		dc[baseKey+".rank.red"] = strconv.Itoa(p.Rank.Entry().Red)
+
+		if true {
+			keys := []string{
+				baseKey + ".name",
+				baseKey + ".rank.value",
+				baseKey + ".rank.name",
+				baseKey + ".rank.abvr",
+				baseKey + ".rank.green",
+				baseKey + ".rank.yellow",
+				baseKey + ".rank.red",
+			}
+			for _, k := range keys {
+				log.Printf("power %s : %s\n", k, dc[k])
+			}
+		}
 
 		if pe, ok := PowerEntries[p.EntryName]; ok {
 			dc[baseKey+".entry.name"] = string(pe.Name)
@@ -48,6 +83,8 @@ func (c Character) addPowersToDisplay(dc DisplayCharacter) {
 			dc[baseKey+".entry.desc"] = string(pe.Description)
 		}
 	}
+	b, _ := yaml.Marshal(dc)
+	fmt.Println(string(b))
 }
 
 func (c Character) addAttributesToDisplay(dc DisplayCharacter) {

@@ -57,9 +57,9 @@ var (
 	ShiftXRank     = RankEntry{Name: "Shift X", Abbreviation: "X", Min: 126, Max: 175, Avg: 150, Green: 11, Yellow: 41, Red: 81}
 	ShiftYRank     = RankEntry{Name: "Shift Y", Abbreviation: "Y", Min: 176, Max: 350, Avg: 200, Green: 7, Yellow: 41, Red: 81}
 	ShiftZRank     = RankEntry{Name: "Shift Z", Abbreviation: "Z", Min: 351, Max: 999, Avg: 500, Green: 4, Yellow: 36, Red: 76}
-	Class1000Rank  = RankEntry{Name: "Class 1000", Abbreviation: "1000", Min: 1000, Max: 1000, Avg: 1000, Green: 2, Yellow: 36, Red: 76}
-	Class3000Rank  = RankEntry{Name: "Class 3000", Abbreviation: "3000", Min: 3000, Max: 3000, Avg: 3000, Green: 2, Yellow: 31, Red: 71}
-	Class5000Rank  = RankEntry{Name: "Class 5000", Abbreviation: "5000", Min: 5000, Max: 5000, Avg: 5000, Green: 2, Yellow: 26, Red: 66}
+	Class1000Rank  = RankEntry{Name: "Class 1000", Abbreviation: "C1k", Min: 1000, Max: 1000, Avg: 1000, Green: 2, Yellow: 36, Red: 76}
+	Class3000Rank  = RankEntry{Name: "Class 3000", Abbreviation: "C3k", Min: 3000, Max: 3000, Avg: 3000, Green: 2, Yellow: 31, Red: 71}
+	Class5000Rank  = RankEntry{Name: "Class 5000", Abbreviation: "C5k", Min: 5000, Max: 5000, Avg: 5000, Green: 2, Yellow: 26, Red: 66}
 	BeyondRank     = RankEntry{Name: "Beyond", Abbreviation: "B", Min: -1, Max: -1, Avg: -1, Green: 2, Yellow: 21, Red: 61}
 )
 
