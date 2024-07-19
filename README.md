@@ -4,11 +4,16 @@
 
 This repo provides tools for managing and printing characters for the Marvel Super Heroes RPG Publiched by TSR in the 1980s.
 
+## Quickstart
+
+```
+go build ./cmd/print
+```
+```
+./print -f ./test_data/sabertooth.yaml -o pdf ; open ./test_data/sabertooth.yaml.pdf 
+```
+
 ## Printing
-
-### PDF Printing
-
-*TODO*
 
 ### ASCII Character Sheet Printing
 
@@ -37,3 +42,9 @@ Powers...
 
  ** APB - Advanced Set Players Book
 ```
+
+### PDF Printing
+
+#### A6 ~(6x4)
+
+![image](sample.png)
