@@ -18,6 +18,22 @@ powers:
 - name: Invulnerability to Optic Blasts
   entryname: Invulnerability
   rank: 1000
+talents:
+  - name: Pilot
+    description: +1 CS to FEAT rolls involving the aircraft the character is controlling
+    reference: APB-90
+  - name: Leadership
+    description: the team you lead gains +50 bonus to the team Karma Pool 
+    reference: APB-91
+  - name: Martial Arts A
+    description: judo/karate - Stun or Slam an opponent regardless of Strength or Endurance
+    reference: APB-89
+  - name: Martial Arts C
+    description: + 1CS Grappling (attacks & damage), Escaping and Dodging.
+    reference: APB-89
+  - name: Resist Domination
+    description: resist mental attacks as if the character had a power of Psyche +1 CS
+    reference: APB-90
 log:
 - msg: test data hand crafted json
 popularity_log:

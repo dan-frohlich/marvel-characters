@@ -14,7 +14,7 @@ func PDFA6CharacterSheet(ch Character, printKarmaLog, printCharacterLog, printPo
 
 	a6LayoutAddAttributes()
 
-	myLayout := a6LayoutAddPowers(ch)
+	myLayout := a6LayoutAddPowersAndTalents(ch)
 
 	drawCharacter(pdf, ch, myLayout, drawBorders)
 
@@ -47,7 +47,7 @@ func drawCharacter(pdf *gofpdf.Fpdf, ch Character, l layout, drawBorders bool) {
 	}
 }
 
-func a6LayoutAddPowers(ch Character) (out layout) {
+func a6LayoutAddPowersAndTalents(ch Character) (out layout) {
 
 	out = deepCopy(a6Layout)
 	page := layoutPage{}
@@ -172,6 +172,51 @@ func a6LayoutAddPowers(ch Character) (out layout) {
 		// 	y = 1
 		// }
 	}
+	y += incY
+	c = &cell{
+		x: 1, y: y, w: 103, h: h,
+		align: "L", border: "", fontFamily: a6LayoutFont,
+		fontSize: fontSize + 2, fontWeight: fontWeight, fillColor: col, fixedText: "Talents",
+	}
+	page["talents.label"] = c
+	y += 6
+	c = &cell{
+		x: 0, y: y, w: 105, h: 1,
+		align: align, border: "B", fontFamily: a6LayoutFont,
+		fontSize: fontSize, fontWeight: fontWeight, fillColor: col, fixedText: ".",
+	}
+	page["talents.hr"] = c
+
+	y += 3
+	for i := range ch.Talents {
+		baseKey := fmt.Sprintf("talents.%d.", i)
+		c = &cell{
+			x: 1, y: y, w: 103, h: h,
+			align: "L", border: "L", fontFamily: a6LayoutFont,
+			fontSize: fontSize - 2, fontWeight: fontWeight, fillColor: col,
+		}
+		page[layoutKey(baseKey+"name")] = c
+		y += 4
+		c = &cell{
+			x: 1, y: y, w: 87, h: 5,
+			align: "LM", border: "BL", fontFamily: a6LayoutFont,
+			fontSize: fontSize - 4, fontWeight: "I", fillColor: col,
+		}
+		page[layoutKey(baseKey+"desc")] = c
+		c = &cell{
+			x: 88, y: y, w: w, h: 5,
+			align: "LM", border: "LB", fontFamily: a6LayoutFont,
+			fontSize: fontSize - 4, fontWeight: "I", fillColor: col,
+		}
+		page[layoutKey(baseKey+"ref")] = c
+		y += 6
+		// if y > 120 {
+		// 	page = layoutPage{}
+		// 	out = append(out, page)
+		// }
+		log.Println("Y", y, "talent", i, ch.Talents[i].Name)
+	}
+
 	fmt.Printf("layout:\n%s", out)
 	return out
 }

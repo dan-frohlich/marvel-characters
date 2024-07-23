@@ -27,7 +27,17 @@ func (c Character) ToDisplayCharacter() DisplayCharacter {
 
 	c.addAttributesToDisplay(dc)
 	c.addPowersToDisplay(dc)
+	c.addTalentsToDisplay(dc)
 	return dc
+}
+
+func (c Character) addTalentsToDisplay(dc DisplayCharacter) {
+	for i, talent := range c.Talents {
+		baseKey := fmt.Sprintf("talents.%d", i)
+		dc[baseKey+".name"] = talent.Name
+		dc[baseKey+".ref"] = talent.Reference
+		dc[baseKey+".desc"] = talent.Description
+	}
 }
 
 func (c Character) addPowersToDisplay(dc DisplayCharacter) {

@@ -17,11 +17,13 @@ type Character struct {
 	Attributes       Attributes    `json:"attributes,omitempty" yaml:"attributes,omitempty"`
 	InitialResources Rank          `json:"initial_resources,omitempty" yaml:"initial_resources,omitempty"`
 	Powers           []Power       `json:"powers,omitempty" yaml:"powers,omitempty"`
+	Talents          []Talent      `json:"talents,omitempty" yaml:"talents,omitempty"`
 	Log              []CreationLog `json:"log,omitempty" yaml:"log,omitempty"`
 	KarmaLog         []ValueLog    `json:"karma_log,omitempty" yaml:"karma_log,omitempty"`
 	PopularityLog    []ValueLog    `json:"popularity_log,omitempty" yaml:"popularity_log,omitempty"`
 	ResourcesLog     []ValueLog    `json:"resources_log,omitempty" yaml:"resources_log,omitempty"`
-	Image            string        `json:"portrait,omitempty" yaml:"portrait,omitempty"`
+
+	Image string `json:"portrait,omitempty" yaml:"portrait,omitempty"`
 }
 
 type Attributes struct {
@@ -32,6 +34,12 @@ type Attributes struct {
 	Reason    Rank `json:"reason,omitempty" yaml:"reason,omitempty"`
 	Intuition Rank `json:"intuition,omitempty" yaml:"intuition,omitempty"`
 	Psyche    Rank `json:"psyche,omitempty" yaml:"psyche,omitempty"`
+}
+
+type Talent struct {
+	Name        string `json:"name,omitempty" yaml:"name,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+	Reference   string `json:"reference,omitempty" yaml:"reference,omitempty"`
 }
 
 func (c Character) Health() int {
